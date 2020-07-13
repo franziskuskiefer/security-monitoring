@@ -1,0 +1,25 @@
+name: "Mozilla TLS Observatory"
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        domain:
+          - app.wire.com
+          - wire.com
+          - account.wire.com
+          - teams.wire.com
+          - prod-nginz-https.wire.com
+          - prod-nginz-ssl.wire.com
+    steps:
+      - uses: actions/setup-go@v2
+      - name: Setup
+        run: go get github.com/mozilla/tls-observatory/tlsobs
+      - name: TLS Observatory
+        run: $(go env GOPATH)/bin/tlsobs --targetLevel=intermediate ${{ matrix.domain }}
