@@ -20,4 +20,4 @@ jobs:
       - name: Mozilla Observatory
         run: |
           npx observatory-cli ${{ matrix.domain }} --format=report --rescan --attempts=20
-          npx observatory-cli ${{ matrix.domain }} --format=report --rescan --attempts=20 --min-score=80 --min-grade=B
+          npx observatory-cli ${{ matrix.domain }} --format=report --rescan --attempts=20 --min-score=75 --min-grade=B
