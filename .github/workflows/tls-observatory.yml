@@ -23,4 +23,4 @@ jobs:
       - name: Setup
         run: go get github.com/mozilla/tls-observatory/tlsobs
       - name: TLS Observatory
-        run: $(go env GOPATH)/bin/tlsobs --targetLevel=intermediate ${{ matrix.domain }}
+        run: $(go env GOPATH)/bin/tlsobs -r --targetLevel=intermediate ${{ matrix.domain }} || $(go env GOPATH)/bin/tlsobs --targetLevel=intermediate ${{ matrix.domain }}
