@@ -1,0 +1,22 @@
+name: "SSL Labs"
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        domain:
+          - app.wire.com
+          - wire.com
+          - account.wire.com
+          - teams.wire.com
+          - prod-nginz-https.wire.com
+          - prod-nginz-ssl.wire.com
+    steps:
+    - name: SSL Labs
+      run: docker run --read-only --cap-drop all --rm -it jumanjiman/ssllabs-scan:latest -usecache -grade ${{ matrix.domain }}
