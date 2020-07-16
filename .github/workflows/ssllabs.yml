@@ -19,4 +19,4 @@ jobs:
           - prod-nginz-ssl.wire.com
     steps:
     - name: SSL Labs
-      run: docker run --read-only --cap-drop all --rm -it jumanjiman/ssllabs-scan:latest -usecache -grade ${{ matrix.domain }}
+      run: docker run --read-only --cap-drop all jumanjiman/ssllabs-scan:latest -usecache -grade ${{ matrix.domain }}
