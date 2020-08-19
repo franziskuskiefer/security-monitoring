@@ -19,6 +19,10 @@ jobs:
           - prod-nginz-ssl.wire.com
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
     - name: SSL Labs Grade
       run: docker run --read-only --cap-drop all jumanjiman/ssllabs-scan:latest -usecache -grade ${{ matrix.domain }}
     - name: SSL Labs Analysis
