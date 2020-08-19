@@ -18,5 +18,10 @@ jobs:
           - prod-nginz-https.wire.com
           - prod-nginz-ssl.wire.com
     steps:
-    - name: SSL Labs
+    - uses: actions/checkout@v2
+    - name: SSL Labs Grade
       run: docker run --read-only --cap-drop all jumanjiman/ssllabs-scan:latest -usecache -grade ${{ matrix.domain }}
+    - name: SSL Labs Analysis
+      run: |
+        docker run --read-only --cap-drop all jumanjiman/ssllabs-scan:latest -usecache ${{ matrix.domain }} > ssllabs.json
+        python analyse-ssllabs.py ssllabs.json
