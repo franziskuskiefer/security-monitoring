@@ -18,6 +18,7 @@ jobs:
           - teams.wire.com
           - wire-teams-staging.zinfra.io
           - wire-teams-dev.zinfra.io
+          - wire-account-staging.zinfra.io
     steps:
       - name: Mozilla Observatory
         run: |
